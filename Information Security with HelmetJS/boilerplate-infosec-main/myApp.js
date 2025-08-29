@@ -1,4 +1,5 @@
 const express = require('express');
+const helmet = require('helmet');
 const app = express();
 
 
@@ -48,6 +49,10 @@ const app = express();
 
 
 module.exports = app;
+// Aplica segurança extra
+app.use(helmet.hidePoweredBy());
+// Bloqueia iframes (protege contra clickjacking)
+app.use(helmet.frameguard({ action: 'deny' }));
 const api = require('./server.js');
 app.use(express.static('public'));
 app.disable('strict-transport-security');

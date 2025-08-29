@@ -4,8 +4,16 @@
  *******************************************/
 
 var express = require("express");
+var bcrypt = require("bcrypt");
 var app = express();
 app.disable("x-powered-by");
+
+// BCrypt usage example
+bcrypt.hash("password", 10, function (err, hash) {
+  if (err) {
+    console.log(err);
+  }
+});
 var fs = require("fs");
 var path = require("path");
 
